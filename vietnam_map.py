@@ -46,7 +46,6 @@ def build_vietnam_routing_map(output_filename="index.html"):
         prefer_canvas=True,
         rotate=True,
         touchRotate=True,
-        shiftKeyRotate=True,
         bearing=0
     )
 
@@ -564,6 +563,60 @@ def build_vietnam_routing_map(output_filename="index.html"):
             }
         }
 
+        function enableRightMouseDragRotation(map) {
+            if (!map || typeof map.setBearing !== 'function' || typeof map.getBearing !== 'function') return;
+
+            var container = map.getContainer();
+            var rotationDrag = null;
+            var suppressNextClick = false;
+            var suppressContextMenu = false;
+
+            container.addEventListener('mousedown', function(e) {
+                if (e.button !== 2) return;
+                e.preventDefault();
+                e.stopPropagation();
+
+                var wasDraggingEnabled = map.dragging && map.dragging.enabled();
+                if (wasDraggingEnabled) map.dragging.disable();
+                rotationDrag = {
+                    startX: e.clientX,
+                    startBearing: map.getBearing(),
+                    wasDraggingEnabled: wasDraggingEnabled,
+                    moved: false
+                };
+                suppressContextMenu = true;
+                container.style.cursor = 'ew-resize';
+            }, true);
+
+            document.addEventListener('mousemove', function(e) {
+                if (!rotationDrag) return;
+                var deltaX = e.clientX - rotationDrag.startX;
+                rotationDrag.moved = Math.abs(deltaX) > 3;
+                map.setBearing(rotationDrag.startBearing + deltaX * 0.5);
+            });
+
+            document.addEventListener('mouseup', function(e) {
+                if (!rotationDrag || e.button !== 2) return;
+                suppressNextClick = rotationDrag.moved;
+                if (rotationDrag.wasDraggingEnabled) map.dragging.enable();
+                rotationDrag = null;
+                container.style.cursor = '';
+            });
+
+            container.addEventListener('click', function(e) {
+                if (!suppressNextClick) return;
+                suppressNextClick = false;
+                e.preventDefault();
+                e.stopImmediatePropagation();
+            }, true);
+
+            container.addEventListener('contextmenu', function(e) {
+                if (!suppressContextMenu) return;
+                suppressContextMenu = false;
+                e.preventDefault();
+            }, true);
+        }
+
         document.addEventListener("DOMContentLoaded", function() {
             updateRealTimeClock();
             setInterval(updateRealTimeClock, 1000);
@@ -577,6 +630,7 @@ def build_vietnam_routing_map(output_filename="index.html"):
 
             if (mapObj) {
                 enableMapRotation(mapObj);
+                enableRightMouseDragRotation(mapObj);
                 mapObj.invalidateSize();
 
                 mapObj.on('click', function(e) {
