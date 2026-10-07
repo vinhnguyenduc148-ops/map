@@ -43,7 +43,10 @@ def build_vietnam_routing_map(output_filename="index.html"):
         location=VIETNAM_CENTER,
         zoom_start=INITIAL_ZOOM,
         tiles=None,
-        prefer_canvas=True
+        prefer_canvas=True,
+        rotate=True,
+        touchRotate=True,
+        bearing=0
     )
 
     # Thêm CDN Leaflet.Rotate & Viewport Meta tag cho Mobile
@@ -104,6 +107,7 @@ def build_vietnam_routing_map(output_filename="index.html"):
 
     # --- 7. TÙY CHỈNH UI RESPONSIVE (PC / TABLET / MOBILE) ---
     gradient_ui_html = '''
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-rotate@0.2.8/dist/leaflet-rotate-src.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- KHUNG TÌM KIẾM ĐỊA ĐIỂM -->
@@ -541,7 +545,7 @@ def build_vietnam_routing_map(output_filename="index.html"):
 
         /* XOAY BẢN ĐỒ */
         function enableMapRotation(map) {
-            if (typeof L.Rotate !== 'undefined') {
+            if (typeof map.setBearing === 'function' && typeof map.getBearing === 'function') {
                 map.setBearing(0);
                 map.on('rotate', function() {
                     var bearing = map.getBearing();
