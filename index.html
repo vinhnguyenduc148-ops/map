@@ -22,7 +22,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_9cfbde7b89d7c0325a542f50f9ed94e6 {
+                #map_1a27015e7af7015090c79fd00d12be3c {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -63,6 +63,7 @@
 <body>
     
     
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-rotate@0.2.8/dist/leaflet-rotate-src.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- KHUNG TÌM KIẾM ĐỊA ĐIỂM -->
@@ -500,7 +501,7 @@
 
         /* XOAY BẢN ĐỒ */
         function enableMapRotation(map) {
-            if (typeof L.Rotate !== 'undefined') {
+            if (typeof map.setBearing === 'function' && typeof map.getBearing === 'function') {
                 map.setBearing(0);
                 map.on('rotate', function() {
                     var bearing = map.getBearing();
@@ -718,14 +719,14 @@
     </script>
     
     
-            <div class="folium-map" id="map_9cfbde7b89d7c0325a542f50f9ed94e6" ></div>
+            <div class="folium-map" id="map_1a27015e7af7015090c79fd00d12be3c" ></div>
         
 </body>
 <script>
     
     
-            var map_9cfbde7b89d7c0325a542f50f9ed94e6 = L.map(
-                "map_9cfbde7b89d7c0325a542f50f9ed94e6",
+            var map_1a27015e7af7015090c79fd00d12be3c = L.map(
+                "map_1a27015e7af7015090c79fd00d12be3c",
                 {
                     center: [16.047079, 108.20623],
                     crs: L.CRS.EPSG3857,
@@ -733,6 +734,10 @@
   "zoom": 6,
   "zoomControl": true,
   "preferCanvas": true,
+  "rotate": true,
+  "touchRotate": true,
+  "shiftKeyRotate": true,
+  "bearing": 0,
 }
 
                 }
@@ -742,7 +747,7 @@
 
         
     
-            var tile_layer_914ee65dad298b210fc56a34d1ae2935 = L.tileLayer(
+            var tile_layer_540054adfc24722bc35d94b586e2af1c = L.tileLayer(
                 "https://mt1.google.com/vt/lyrs=m\u0026x={x}\u0026y={y}\u0026z={z}",
                 {
   "minZoom": 0,
@@ -759,10 +764,10 @@
             );
         
     
-            tile_layer_914ee65dad298b210fc56a34d1ae2935.addTo(map_9cfbde7b89d7c0325a542f50f9ed94e6);
+            tile_layer_540054adfc24722bc35d94b586e2af1c.addTo(map_1a27015e7af7015090c79fd00d12be3c);
         
     
-            var tile_layer_cf05e7a9b84b2dedff7bd5dccd64fe15 = L.tileLayer(
+            var tile_layer_a165b67b7edb059ea9598cb5fbfd603c = L.tileLayer(
                 "https://mt1.google.com/vt/lyrs=y\u0026x={x}\u0026y={y}\u0026z={z}",
                 {
   "minZoom": 0,
@@ -779,10 +784,10 @@
             );
         
     
-            tile_layer_cf05e7a9b84b2dedff7bd5dccd64fe15.addTo(map_9cfbde7b89d7c0325a542f50f9ed94e6);
+            tile_layer_a165b67b7edb059ea9598cb5fbfd603c.addTo(map_1a27015e7af7015090c79fd00d12be3c);
         
     
-            var tile_layer_9ca74aca738296ccc2c6abb84decf0af = L.tileLayer(
+            var tile_layer_0b29d2dc302e486aae1c73d145701d2c = L.tileLayer(
                 "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
                 {
   "minZoom": 0,
@@ -799,23 +804,23 @@
             );
         
     
-            tile_layer_9ca74aca738296ccc2c6abb84decf0af.addTo(map_9cfbde7b89d7c0325a542f50f9ed94e6);
+            tile_layer_0b29d2dc302e486aae1c73d145701d2c.addTo(map_1a27015e7af7015090c79fd00d12be3c);
         
     
-            var feature_group_94f13d0505f63b7b574c020d2b733123 = L.featureGroup(
+            var feature_group_a21372bec0cd9d0a214de3837e1341ce = L.featureGroup(
                 {
 }
             );
         
     
-            var marker_89ccb10f06a889bce3386d3a07342643 = L.marker(
+            var marker_d3da536bde919c3d97be658c2d3baecb = L.marker(
                 [21.028511, 105.804817],
                 {
 }
-            ).addTo(feature_group_94f13d0505f63b7b574c020d2b733123);
+            ).addTo(feature_group_a21372bec0cd9d0a214de3837e1341ce);
         
     
-            var icon_bd0625d7d1bed8d6c6751043f742a80e = L.AwesomeMarkers.icon(
+            var icon_f8f014f812bdeb83b73f5f51b3a2e251 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "red",
   "iconColor": "white",
@@ -826,24 +831,24 @@
             );
         
     
-        var popup_9bc5e5eb40cd756b4a143e7ffe8e57e8 = L.popup({
+        var popup_de1af2182b4b63c8ef99b2ce3f3e0576 = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_3d8a19190f2b58abb1187dda12ffac33 = $(`<div id="html_3d8a19190f2b58abb1187dda12ffac33" style="width: 100.0%; height: 100.0%;"><b>Thủ đô Hà Nội</b></div>`)[0];
-                popup_9bc5e5eb40cd756b4a143e7ffe8e57e8.setContent(html_3d8a19190f2b58abb1187dda12ffac33);
+                var html_ac87a68e52e2ac2e3d4c6fe24f1b7409 = $(`<div id="html_ac87a68e52e2ac2e3d4c6fe24f1b7409" style="width: 100.0%; height: 100.0%;"><b>Thủ đô Hà Nội</b></div>`)[0];
+                popup_de1af2182b4b63c8ef99b2ce3f3e0576.setContent(html_ac87a68e52e2ac2e3d4c6fe24f1b7409);
             
         
 
-        marker_89ccb10f06a889bce3386d3a07342643.bindPopup(popup_9bc5e5eb40cd756b4a143e7ffe8e57e8)
+        marker_d3da536bde919c3d97be658c2d3baecb.bindPopup(popup_de1af2182b4b63c8ef99b2ce3f3e0576)
         ;
 
         
     
     
-            marker_89ccb10f06a889bce3386d3a07342643.bindTooltip(
+            marker_d3da536bde919c3d97be658c2d3baecb.bindTooltip(
                 `<div>
                      Thủ đô Hà Nội
                  </div>`,
@@ -853,17 +858,17 @@
             );
         
     
-                marker_89ccb10f06a889bce3386d3a07342643.setIcon(icon_bd0625d7d1bed8d6c6751043f742a80e);
+                marker_d3da536bde919c3d97be658c2d3baecb.setIcon(icon_f8f014f812bdeb83b73f5f51b3a2e251);
             
     
-            var marker_0aa913aeb2a0a1a2089b7fd046e5f0cf = L.marker(
+            var marker_72e0ada07211244b7154294d9eccf660 = L.marker(
                 [10.823099, 106.629664],
                 {
 }
-            ).addTo(feature_group_94f13d0505f63b7b574c020d2b733123);
+            ).addTo(feature_group_a21372bec0cd9d0a214de3837e1341ce);
         
     
-            var icon_dc8ce05c316a572e8a71222ca4702325 = L.AwesomeMarkers.icon(
+            var icon_17a4824c6f545e956be674c1a30cf7a2 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "blue",
   "iconColor": "white",
@@ -874,24 +879,24 @@
             );
         
     
-        var popup_9031fc1e3bd1874389f0ea803722af67 = L.popup({
+        var popup_8b954a8373ce49536fcd318033fc8551 = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_2bd2af1d91eb64ceff2fd0d2bd4e79b7 = $(`<div id="html_2bd2af1d91eb64ceff2fd0d2bd4e79b7" style="width: 100.0%; height: 100.0%;"><b>TP. Hồ Chí Minh</b></div>`)[0];
-                popup_9031fc1e3bd1874389f0ea803722af67.setContent(html_2bd2af1d91eb64ceff2fd0d2bd4e79b7);
+                var html_af0684f038955e919b0d13b85b8dee43 = $(`<div id="html_af0684f038955e919b0d13b85b8dee43" style="width: 100.0%; height: 100.0%;"><b>TP. Hồ Chí Minh</b></div>`)[0];
+                popup_8b954a8373ce49536fcd318033fc8551.setContent(html_af0684f038955e919b0d13b85b8dee43);
             
         
 
-        marker_0aa913aeb2a0a1a2089b7fd046e5f0cf.bindPopup(popup_9031fc1e3bd1874389f0ea803722af67)
+        marker_72e0ada07211244b7154294d9eccf660.bindPopup(popup_8b954a8373ce49536fcd318033fc8551)
         ;
 
         
     
     
-            marker_0aa913aeb2a0a1a2089b7fd046e5f0cf.bindTooltip(
+            marker_72e0ada07211244b7154294d9eccf660.bindTooltip(
                 `<div>
                      TP. Hồ Chí Minh
                  </div>`,
@@ -901,17 +906,17 @@
             );
         
     
-                marker_0aa913aeb2a0a1a2089b7fd046e5f0cf.setIcon(icon_dc8ce05c316a572e8a71222ca4702325);
+                marker_72e0ada07211244b7154294d9eccf660.setIcon(icon_17a4824c6f545e956be674c1a30cf7a2);
             
     
-            var marker_9c3bdb8917b03d5f6bc81548cbbb1979 = L.marker(
+            var marker_bfbcacdb48b1f2b33a060197e75ee717 = L.marker(
                 [16.047079, 108.20623],
                 {
 }
-            ).addTo(feature_group_94f13d0505f63b7b574c020d2b733123);
+            ).addTo(feature_group_a21372bec0cd9d0a214de3837e1341ce);
         
     
-            var icon_7b04a40e86487feb722fffb87279ab35 = L.AwesomeMarkers.icon(
+            var icon_fb8a4a3b7ea4b005c6bf1fd95accbeec = L.AwesomeMarkers.icon(
                 {
   "markerColor": "green",
   "iconColor": "white",
@@ -922,24 +927,24 @@
             );
         
     
-        var popup_94345e220827561d5737619a34d623ee = L.popup({
+        var popup_28f7d9bdff2ec50fd7abd04570f72e38 = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_29b62177254220517adcf1d010aea504 = $(`<div id="html_29b62177254220517adcf1d010aea504" style="width: 100.0%; height: 100.0%;"><b>TP. Đà Nẵng</b></div>`)[0];
-                popup_94345e220827561d5737619a34d623ee.setContent(html_29b62177254220517adcf1d010aea504);
+                var html_770aa82d349428033586e8fa7c4b9f63 = $(`<div id="html_770aa82d349428033586e8fa7c4b9f63" style="width: 100.0%; height: 100.0%;"><b>TP. Đà Nẵng</b></div>`)[0];
+                popup_28f7d9bdff2ec50fd7abd04570f72e38.setContent(html_770aa82d349428033586e8fa7c4b9f63);
             
         
 
-        marker_9c3bdb8917b03d5f6bc81548cbbb1979.bindPopup(popup_94345e220827561d5737619a34d623ee)
+        marker_bfbcacdb48b1f2b33a060197e75ee717.bindPopup(popup_28f7d9bdff2ec50fd7abd04570f72e38)
         ;
 
         
     
     
-            marker_9c3bdb8917b03d5f6bc81548cbbb1979.bindTooltip(
+            marker_bfbcacdb48b1f2b33a060197e75ee717.bindTooltip(
                 `<div>
                      TP. Đà Nẵng
                  </div>`,
@@ -949,17 +954,17 @@
             );
         
     
-                marker_9c3bdb8917b03d5f6bc81548cbbb1979.setIcon(icon_7b04a40e86487feb722fffb87279ab35);
+                marker_bfbcacdb48b1f2b33a060197e75ee717.setIcon(icon_fb8a4a3b7ea4b005c6bf1fd95accbeec);
             
     
-            var marker_53eea29a414e408c9da3868337bbf38e = L.marker(
+            var marker_856b9aa6e00c666bbe350d08fa2ac994 = L.marker(
                 [16.5, 112.0],
                 {
 }
-            ).addTo(feature_group_94f13d0505f63b7b574c020d2b733123);
+            ).addTo(feature_group_a21372bec0cd9d0a214de3837e1341ce);
         
     
-            var icon_ce783305160659646fa4c9cb96a1b964 = L.AwesomeMarkers.icon(
+            var icon_e86c9e26aaaca1d413503436820dd613 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -970,24 +975,24 @@
             );
         
     
-        var popup_48fd58b78a80598751eb517e599738ea = L.popup({
+        var popup_c2bee5e852e728be788b8af593cd5dc9 = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_795c50d1042662b24954b3de4451b69c = $(`<div id="html_795c50d1042662b24954b3de4451b69c" style="width: 100.0%; height: 100.0%;"><b>Quần đảo Hoàng Sa (Việt Nam)</b></div>`)[0];
-                popup_48fd58b78a80598751eb517e599738ea.setContent(html_795c50d1042662b24954b3de4451b69c);
+                var html_48fdaa7d822ef5c679c4445d722cb24c = $(`<div id="html_48fdaa7d822ef5c679c4445d722cb24c" style="width: 100.0%; height: 100.0%;"><b>Quần đảo Hoàng Sa (Việt Nam)</b></div>`)[0];
+                popup_c2bee5e852e728be788b8af593cd5dc9.setContent(html_48fdaa7d822ef5c679c4445d722cb24c);
             
         
 
-        marker_53eea29a414e408c9da3868337bbf38e.bindPopup(popup_48fd58b78a80598751eb517e599738ea)
+        marker_856b9aa6e00c666bbe350d08fa2ac994.bindPopup(popup_c2bee5e852e728be788b8af593cd5dc9)
         ;
 
         
     
     
-            marker_53eea29a414e408c9da3868337bbf38e.bindTooltip(
+            marker_856b9aa6e00c666bbe350d08fa2ac994.bindTooltip(
                 `<div>
                      Quần đảo Hoàng Sa (Việt Nam)
                  </div>`,
@@ -997,17 +1002,17 @@
             );
         
     
-                marker_53eea29a414e408c9da3868337bbf38e.setIcon(icon_ce783305160659646fa4c9cb96a1b964);
+                marker_856b9aa6e00c666bbe350d08fa2ac994.setIcon(icon_e86c9e26aaaca1d413503436820dd613);
             
     
-            var marker_b41034b089af8b4f11a50fc12f310fae = L.marker(
+            var marker_d303e181a5d798c7b859de43902cf62b = L.marker(
                 [8.65, 111.92],
                 {
 }
-            ).addTo(feature_group_94f13d0505f63b7b574c020d2b733123);
+            ).addTo(feature_group_a21372bec0cd9d0a214de3837e1341ce);
         
     
-            var icon_b6b2276803aa5a056ab22bb5e4b00a75 = L.AwesomeMarkers.icon(
+            var icon_c70b07a78e6136151c601c5761b3a1a5 = L.AwesomeMarkers.icon(
                 {
   "markerColor": "orange",
   "iconColor": "white",
@@ -1018,24 +1023,24 @@
             );
         
     
-        var popup_a004ad297d5499bb8bfaf0a63e4e9e8b = L.popup({
+        var popup_f8d77b750d7c2a08c859372927ac8fef = L.popup({
   "maxWidth": 300,
 });
 
         
             
-                var html_38225f699f9565d593ea1ded914df8c6 = $(`<div id="html_38225f699f9565d593ea1ded914df8c6" style="width: 100.0%; height: 100.0%;"><b>Quần đảo Trường Sa (Việt Nam)</b></div>`)[0];
-                popup_a004ad297d5499bb8bfaf0a63e4e9e8b.setContent(html_38225f699f9565d593ea1ded914df8c6);
+                var html_a1bf442bbfd6071bb5a62d812e404fb7 = $(`<div id="html_a1bf442bbfd6071bb5a62d812e404fb7" style="width: 100.0%; height: 100.0%;"><b>Quần đảo Trường Sa (Việt Nam)</b></div>`)[0];
+                popup_f8d77b750d7c2a08c859372927ac8fef.setContent(html_a1bf442bbfd6071bb5a62d812e404fb7);
             
         
 
-        marker_b41034b089af8b4f11a50fc12f310fae.bindPopup(popup_a004ad297d5499bb8bfaf0a63e4e9e8b)
+        marker_d303e181a5d798c7b859de43902cf62b.bindPopup(popup_f8d77b750d7c2a08c859372927ac8fef)
         ;
 
         
     
     
-            marker_b41034b089af8b4f11a50fc12f310fae.bindTooltip(
+            marker_d303e181a5d798c7b859de43902cf62b.bindTooltip(
                 `<div>
                      Quần đảo Trường Sa (Việt Nam)
                  </div>`,
@@ -1045,26 +1050,26 @@
             );
         
     
-                marker_b41034b089af8b4f11a50fc12f310fae.setIcon(icon_b6b2276803aa5a056ab22bb5e4b00a75);
+                marker_d303e181a5d798c7b859de43902cf62b.setIcon(icon_c70b07a78e6136151c601c5761b3a1a5);
             
     
-            feature_group_94f13d0505f63b7b574c020d2b733123.addTo(map_9cfbde7b89d7c0325a542f50f9ed94e6);
+            feature_group_a21372bec0cd9d0a214de3837e1341ce.addTo(map_1a27015e7af7015090c79fd00d12be3c);
         
     
-            var locate_control_5635d64269484d9455a78edd4290f22e = L.control.locate(
+            var locate_control_360c201e3d9d54b7e59304a583e83a83 = L.control.locate(
                 {"flyTo": true, "keepCurrentZoomLevel": false, "locateOptions": {"enableHighAccuracy": true, "maximumAge": 1000, "timeout": 10000, "watch": true}, "setView": "untilPanOrZoom", "strings": {"title": "Theo d\u00f5i v\u1ecb tr\u00ed th\u1eddi gian th\u1ef1c"}}
-            ).addTo(map_9cfbde7b89d7c0325a542f50f9ed94e6);
+            ).addTo(map_1a27015e7af7015090c79fd00d12be3c);
             
-                locate_control_5635d64269484d9455a78edd4290f22e.start();
+                locate_control_360c201e3d9d54b7e59304a583e83a83.start();
             
         
     
-            var tile_layer_ad4cba45a075c0dfe08f3cff27205691 = L.tileLayer(
+            var tile_layer_fb389b30ea9687225ea94fce4f18f37f = L.tileLayer(
                 "https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}",
                 {"attribution": "Esri", "detect_retina": false, "max_native_zoom": 18, "max_zoom": 18, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
             );
-            var mini_map_a6065e8223c542595e08d31faf35133c = new L.Control.MiniMap(
-                tile_layer_ad4cba45a075c0dfe08f3cff27205691,
+            var mini_map_da481f4bfe81183345e132524d43ce21 = new L.Control.MiniMap(
+                tile_layer_fb389b30ea9687225ea94fce4f18f37f,
                 {
   "position": "bottomright",
   "width": 150,
@@ -1079,28 +1084,28 @@
   "minimized": false,
 }
             );
-            map_9cfbde7b89d7c0325a542f50f9ed94e6.addControl(mini_map_a6065e8223c542595e08d31faf35133c);
+            map_1a27015e7af7015090c79fd00d12be3c.addControl(mini_map_da481f4bfe81183345e132524d43ce21);
         
     
-            var layer_control_289e2c04d0d79eb99744aeb39d25a442_layers = {
+            var layer_control_8c9ea5d19596613fb777f2fb335b36dd_layers = {
                 base_layers : {
-                    "Google Maps (\u0110\u01b0\u1eddng x\u00e1)" : tile_layer_914ee65dad298b210fc56a34d1ae2935,
-                    "Google Hybrid (V\u1ec7 tinh + T\u00ean \u0111\u01b0\u1eddng)" : tile_layer_cf05e7a9b84b2dedff7bd5dccd64fe15,
-                    "V\u1ec7 tinh Esri (Nh\u00e0 c\u1eeda chi ti\u1ebft)" : tile_layer_9ca74aca738296ccc2c6abb84decf0af,
+                    "Google Maps (\u0110\u01b0\u1eddng x\u00e1)" : tile_layer_540054adfc24722bc35d94b586e2af1c,
+                    "Google Hybrid (V\u1ec7 tinh + T\u00ean \u0111\u01b0\u1eddng)" : tile_layer_a165b67b7edb059ea9598cb5fbfd603c,
+                    "V\u1ec7 tinh Esri (Nh\u00e0 c\u1eeda chi ti\u1ebft)" : tile_layer_0b29d2dc302e486aae1c73d145701d2c,
                 },
                 overlays :  {
-                    "Th\u00e0nh ph\u1ed1 ch\u00ednh" : feature_group_94f13d0505f63b7b574c020d2b733123,
+                    "Th\u00e0nh ph\u1ed1 ch\u00ednh" : feature_group_a21372bec0cd9d0a214de3837e1341ce,
                 },
             };
-            let layer_control_289e2c04d0d79eb99744aeb39d25a442 = L.control.layers(
-                layer_control_289e2c04d0d79eb99744aeb39d25a442_layers.base_layers,
-                layer_control_289e2c04d0d79eb99744aeb39d25a442_layers.overlays,
+            let layer_control_8c9ea5d19596613fb777f2fb335b36dd = L.control.layers(
+                layer_control_8c9ea5d19596613fb777f2fb335b36dd_layers.base_layers,
+                layer_control_8c9ea5d19596613fb777f2fb335b36dd_layers.overlays,
                 {
   "position": "topright",
   "collapsed": true,
   "autoZIndex": true,
 }
-            ).addTo(map_9cfbde7b89d7c0325a542f50f9ed94e6);
+            ).addTo(map_1a27015e7af7015090c79fd00d12be3c);
 
         
 </script>

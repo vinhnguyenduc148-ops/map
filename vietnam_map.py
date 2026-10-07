@@ -46,6 +46,7 @@ def build_vietnam_routing_map(output_filename="index.html"):
         prefer_canvas=True,
         rotate=True,
         touchRotate=True,
+        shiftKeyRotate=True,
         bearing=0
     )
 
